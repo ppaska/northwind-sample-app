@@ -1,0 +1,104 @@
+[
+	{
+		"contentId": 361,
+		"name": "app",
+		"folder": "",
+		"contentType": "shell.xml"
+	},
+	{
+		"contentId": 360,
+		"name": "app",
+		"folder": "",
+		"contentType": "xml"
+	},
+	{
+		"contentId": 362,
+		"name": "app-script",
+		"folder": "",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 374,
+		"name": "customer-details",
+		"folder": "customer-details",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 373,
+		"name": "customer-details",
+		"folder": "customer-details",
+		"contentType": "page.xml"
+	},
+	{
+		"contentId": 371,
+		"name": "customers-list",
+		"folder": "customers-list",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 370,
+		"name": "customers-list",
+		"folder": "customers-list",
+		"contentType": "page.xml"
+	},
+	{
+		"contentId": 369,
+		"name": "dashboard",
+		"folder": "dashboard",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 368,
+		"name": "dashboard",
+		"folder": "dashboard",
+		"contentType": "page.xml"
+	},
+	{
+		"contentId": 376,
+		"name": "employee-details",
+		"folder": "employee-details",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 375,
+		"name": "employee-details",
+		"folder": "employee-details",
+		"contentType": "page.xml"
+	},
+	{
+		"contentId": 366,
+		"name": "employees-list",
+		"folder": "employees-list",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 372,
+		"name": "employees-list",
+		"folder": "employees-list",
+		"contentType": "page.xml"
+	},
+	{
+		"contentId": 364,
+		"name": "order-details",
+		"folder": "order-details",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 363,
+		"name": "order-details",
+		"folder": "order-details",
+		"contentType": "page.xml"
+	},
+	{
+		"contentId": 365,
+		"name": "orders-list",
+		"folder": "orders-list",
+		"contentType": "jspy"
+	},
+	{
+		"contentId": 367,
+		"name": "orders-list",
+		"folder": "orders-list",
+		"contentType": "page.xml"
+	}
+]
