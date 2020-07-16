@@ -1,0 +1,26 @@
+<page title="New page" code="orders-list/orders-list.jspy">
+  <body>
+
+    <div class="container d-flex flex-column" onInit="onOrdersPageInit()">
+      
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb px-0">
+          <li class="breadcrumb-item"><a routerLink="app/{$.appInfo/ownerName}/{$.appInfo/appName}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Orders</li>
+        </ol>
+      </nav>
+      
+      <vendor-data-grid id="ordersGrid" title="Orders" titleIcon="c-icon c-icon-2xl cil-diamond" titleStyle="h2" class="overflow-hidden h-100" isReadOnly="true" binding="$.list" headersVisibility="Column" selectionMode="CellRange">
+        <column bindingName="OrderId" headerText="Id" width="70" link="../order-details?OrderID={{OrderId}}" />
+        <column bindingName="Customer" minWidth="100" width="*" />
+        <column bindingName="SalesPerson" width="150"/>
+        <column bindingName="OrderDate" dataType="Date" displayFormat="yyyy-MM-dd" width="100"/>
+        <column bindingName="ShipCountry" headerText="Country" width="100"/>
+        <column bindingName="ShipCity" width="120"/>
+        <column bindingName="Freight" width="80"/>
+        <column bindingName="SubTotal" width="100"/>
+        <column bindingName="Total" width="80"/>
+      </vendor-data-grid>
+    </div>
+  </body>
+</page>
