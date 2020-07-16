@@ -1,0 +1,113 @@
+from datapipe-js-array import first, sum
+
+
+async def getSalePersonsList(dateParams):
+  print(appSettings, appConnections)
+  sqlDataApi(appConnectionNames.mainDb)
+    .executeProcedure(appConnections.mainDb.employeesSummary, dateParams)
+
+async def getSummary(dateParams):
+  summary = first(sqlDataApi(appConnectionNames.mainDb)
+    .executeProcedure(appConnections.mainDb.summary, dateParams))
+  summary.sales = format(summary.sales, "#,##")
+  summary.freight = format(summary.freight, "#,##")
+  return summary
+
+async def getOrdersByCountry(dateParams):
+  summary = sqlDataApi(appConnectionNames.mainDb)
+    .executeProcedure(appConnections.mainDb.byCountrySummary, dateParams)
+    
+  return summary
+
+async def getTopCustomersList(dateParams):
+  sqlDataApi(appConnectionNames.mainDb)
+    .executeProcedure(appConnections.mainDb.top10CustomersList, dateParams)
+    .map(r => {
+      name: r.Customer,
+      value: r.SalesTotal,
+      id: r.CustomerId
+    })
+   
+async def refreshSections():
+  dateParams = {}
+
+  if dataModel.period.startDate?.length > 0:
+    dateParams.startDate = dataModel.period.startDate
+
+  if dataModel.period.endDate?.length > 0:
+    dateParams.endDate = dataModel.period.endDate
+    
+  dataModel.salesPeople = getSalePersonsList(dateParams)
+  dataModel.topCustomers = getTopCustomersList(dateParams)
+  dataModel.summary = getSummary(dateParams)
+  dataModel.ordersByCountry = getOrdersByCountry(dateParams)
+  
+async def onPageInit():
+  dataModel.appInfo = appInfo
+  
+  dataModel.period = {
+    startDate: "2019-01-01",
+    endDate: "2020-05-14"
+  }
+  
+  refreshSections()
+  
+  return dataModel
+  
+  
+async def onStartDateChanged(date):
+  refreshSections()
+  
+async def onEndDateChanged(date):
+  refreshSections()
+  
+
+def onCustomerSelect(customer):
+  queryParams = "CustomerID=" + customer.id
+  appService.showPage("customer-details", queryParams)
+  
+def onShippedToSelect(shippedTo):
+  queryParams = "ShipCountry=" + shippedTo.country
+  appService.showPage("orders-list", queryParams)
+  
+def togglePeriodBtnClass(act):
+  for btnId in ["allBtn", "yearBtn", "3mBtn", "6mBtn"]:
+    getComponentById(rootUIModel, btnId)
+      .element
+      .classList.remove("active")
+  
+  getComponentById(rootUIModel, act)
+    .element
+    .classList.add("active")
+  
+  
+async def onAllPeriod():
+  togglePeriodBtnClass("allBtn")
+  
+  dataModel.period = {}
+  refreshSections()
+  
+async def onYearPeriod():
+  togglePeriodBtnClass("yearBtn")
+  dataModel.period = {
+    startDate: dateTime().getFullYear() + "-01-01",
+    endDate: format(dateTime(), "yyyy-MM-dd")
+  }
+  refreshSections()
+  
+async def on3MonthPeriod():
+  togglePeriodBtnClass("3mBtn")
+  dataModel.period = {
+    startDate: "2020-02-14",
+    endDate: format(dateTime(), "yyyy-MM-dd")
+  }
+  refreshSections()
+  
+async def on6MonthPeriod():
+  togglePeriodBtnClass("6mBtn")
+  dataModel.period = {
+    startDate: "2019-12-14",
+    endDate: format(dateTime(), "yyyy-MM-dd")
+  }
+  refreshSections()
+  
