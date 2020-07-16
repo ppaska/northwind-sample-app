@@ -1,0 +1,141 @@
+{
+	"logo": "worksheets_logo",
+	"shellUri": "app.shell.xml",
+	"settings": {},
+	"connectionNames": {
+		"mainDb": "northwind-db-connection"
+	},
+	"connections": {
+		"mainDb": {
+			"customers": "northwind.NorthwindCustomers",
+			"categories": "northwind.NorthwindCategories",
+			"employees": "northwind.NorthwindEmployees",
+			"orders": "northwind.NorthwindOrders",
+			"orderDetails": "northwind.NorthwindOrderDetails",
+			"shippers": "northwind.NorthwindShippers",
+			"products": "northwind.NorthwindProducts",
+			"customersListView": "northwind.NorthwindCustomersListView",
+			"employeesListView": "northwind.NorthwindEmployeesListView",
+			"ordersListView": "northwind.NorthwindOrdersListView",
+			"ordersEditView": "northwind.NorthwindOrdersEditView",
+			"orderDetailsView": "northwind.NorthwindOrderDetailsView",
+			"employeesSummary": "northwind.NorthwindEmployeesSummary",
+			"byCountrySummary": "northwind.NorthwindByCountrySummary",
+			"summary": "northwind.NorthwindSummary",
+			"top10CustomersList": "northwind.NorthwindTop10CustomersList"
+		}
+	},
+	"connectionConfigs": [
+		{
+			"key": "mainDb",
+			"name": "northwind-db-connection",
+			"defaultSchema": "northwind",
+			"dbObjects": [
+				{
+					"key": "customers",
+					"name": "NorthwindCustomers",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "categories",
+					"name": "NorthwindCategories",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "employees",
+					"name": "NorthwindEmployees",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "orders",
+					"name": "NorthwindOrders",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "orderDetails",
+					"name": "NorthwindOrderDetails",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "shippers",
+					"name": "NorthwindShippers",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "products",
+					"name": "NorthwindProducts",
+					"type": "table",
+					"overrideSchema": false
+				},
+				{
+					"key": "customersListView",
+					"name": "NorthwindCustomersListView",
+					"type": "view",
+					"overrideSchema": true
+				},
+				{
+					"key": "employeesListView",
+					"name": "NorthwindEmployeesListView",
+					"type": "view",
+					"overrideSchema": true
+				},
+				{
+					"key": "ordersListView",
+					"name": "NorthwindOrdersListView",
+					"type": "view",
+					"overrideSchema": true
+				},
+				{
+					"key": "ordersEditView",
+					"name": "NorthwindOrdersEditView",
+					"type": "view",
+					"overrideSchema": true
+				},
+				{
+					"key": "orderDetailsView",
+					"name": "NorthwindOrderDetailsView",
+					"type": "view",
+					"overrideSchema": true
+				},
+				{
+					"key": "employeesSummary",
+					"name": "NorthwindEmployeesSummary",
+					"type": "procedure",
+					"overrideSchema": true
+				},
+				{
+					"key": "byCountrySummary",
+					"name": "NorthwindByCountrySummary",
+					"type": "procedure",
+					"overrideSchema": true
+				},
+				{
+					"key": "summary",
+					"name": "NorthwindSummary",
+					"type": "procedure",
+					"overrideSchema": true
+				},
+				{
+					"key": "top10CustomersList",
+					"name": "NorthwindTop10CustomersList",
+					"type": "procedure",
+					"overrideSchema": true
+				}
+			]
+		}
+	],
+	"ownerName": "PublicData",
+	"appId": 117,
+	"appName": "NorthwindApp",
+	"title": "Northwind App",
+	"description": "Northwind Traders is a fictions company invented by Microsoft for the purpose of demonstrating their database products, using the Northwind database.",
+	"isAdmin": true,
+	"publicAccess": "Reader",
+	"accessLevel": "Writer"
+}
