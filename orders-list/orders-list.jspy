@@ -1,0 +1,22 @@
+from datapipe-js-array import first, sum
+    
+async def onOrdersPageInit():
+  dataModel.appInfo = appInfo
+  
+  country = queryParams.ShipCountry or queryParams.shipCountry or queryParams.shipcountry or ""
+  dataGrid = getComponentById(rootUIModel, "ordersGrid")
+  attrs = dataGrid.attrs
+  attrs.source.connection = appConnectionNames.mainDb
+  attrs.source.name = appConnections.mainDb.ordersListView
+  if country.length == 0:
+    attrs.source.query.filters = []
+  else:
+    attrs.source.query.filters = [{
+      AndOr: "And",
+      fieldName: "ShipCountry",
+      operation: "Equal",
+      value: country
+    }]
+    
+  dataGrid.refresh()
+  
