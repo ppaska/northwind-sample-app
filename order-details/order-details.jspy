@@ -1,0 +1,100 @@
+from datapipe-js-array import first, sum
+
+async def getCustomersList():
+  sqlDataApi(appConnectionNames.mainDb)
+    .table(appConnections.mainDb.customers)
+    .select("CustomerId, CompanyName, Country, Address, City, PostalCode, Region")
+    .orderBy("CompanyName")
+    .runQuery()  
+
+async def getSalePersonsList():
+  sqlDataApi(appConnectionNames.mainDb)
+    .table(appConnections.mainDb.employees)
+    .select("EmployeeId, FirstName, LastName")
+    .orderBy("LastName")
+    .runQuery()
+    .map(e => {employeeId: e.EmployeeId, name: e.LastName + ", " + e.FirstName})
+
+async def getShippersList():
+  sqlDataApi(appConnectionNames.mainDb)
+    .table(appConnections.mainDb.shippers)
+    .runQuery()
+    .map(r => {shipVia: r.ShipperId, ShipperCompanyName: r.CompanyName})
+
+async def getOrderInfo(orderId):
+  orders = sqlDataApi(appConnectionNames.mainDb)
+    .table(appConnections.mainDb.ordersEditView)
+    .filter("OrderId = @orderId", {orderId: orderId})
+    .runQuery()
+
+  orderDetails = sqlDataApi(appConnectionNames.mainDb)
+    .table(appConnections.mainDb.orderDetailsView)
+    .filter("OrderId = @orderId", {orderId: orderId})
+    .runQuery()
+  
+  return {
+    orderInfo: first(orders),
+    items: orderDetails
+  }
+
+def setTotals():
+  orderDetails = dataModel.data.items
+  subTotal = sum(orderDetails, o => o.TotalPrice)
+  freight = dataModel.data.orderInfo?.Freight
+  total = subTotal + freight
+  dataModel.totals = {
+    subTotal: Math.round(subTotal, 2),
+    freight: freight,
+    total: Math.round(total, 2)
+  }
+  
+async def getProductsList():
+  sqlDataApi(appConnectionNames.mainDb)
+    .table(appConnections.mainDb.products)
+    .select("ProductID, ProductName")
+    .orderBy("ProductName")
+    .runQuery()  
+  
+async def onPageInit():
+  dataModel.appInfo = appInfo
+  
+  orderId = queryParams.OrderID
+  orderInfo = getOrderInfo(orderId)
+
+  dataModel.data = orderInfo
+  dataModel.customers = getCustomersList()
+  dataModel.salesPersons = getSalePersonsList()
+  dataModel.shippers = getShippersList()
+
+  products = getProductsList()
+  print("getComponentById fails here =>", products, rootUIModel)
+  grid = getComponentById(rootUIModel, "products")
+  print("=> grid =>", grid)
+
+  colName = grid.attrs.columns[0]
+  colTotal = grid.attrs.columns[4]
+  
+  print(3)
+  setTotals()
+  print(4)
+  colName.dataMap = wijmo.getDataMap(products, "ProductID", "ProductName")
+  print(5)
+  colTotal.calculate = getTotalColumn
+  
+def getTotalColumn(item):
+  v = setTotals()
+  discount = 100 - item.Discount
+  return Math.round(item.UnitPrice * item.Quantity * discount / 100, 2)
+  
+
+def onCustomerSelect(customer):
+  dataModel.data.orderInfo.CustomerCompanyName = customer.data.CompanyName
+  dataModel.data.orderInfo.CustomerAddressLine = customer.data.Address
+  dataModel.data.orderInfo.CustomerCity = customer.data.City
+  dataModel.data.orderInfo.CustomerCountry = customer.data.Country
+  dataModel.data.orderInfo.CustomerPostalCode = customer.data.PostalCode
+
+
+
+
+
