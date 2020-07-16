@@ -1,0 +1,23 @@
+<app name="NorthwindApp" title="Northwind App" description="Northwind Traders is a fictions company invented by Microsoft for the purpose of demonstrating their database products, using the Northwind database." shellUri="app.shell.xml" logo="worksheets_logo" publicAccess="Reader">
+	<settings />
+	<connections>
+		<connection key="mainDb" name="northwind-db-connection" defaultSchema="northwind">
+			<db-object key="customers" overrideSchema="false" type="table" name="NorthwindCustomers" />
+			<db-object key="categories" overrideSchema="false" type="table" name="NorthwindCategories" />
+			<db-object key="employees" overrideSchema="false" type="table" name="NorthwindEmployees" />
+			<db-object key="orders" overrideSchema="false" type="table" name="NorthwindOrders" />
+			<db-object key="orderDetails" overrideSchema="false" type="table" name="NorthwindOrderDetails" />
+			<db-object key="shippers" overrideSchema="false" type="table" name="NorthwindShippers" />
+			<db-object key="products" overrideSchema="false" type="table" name="NorthwindProducts" />
+			<db-object key="customersListView" overrideSchema="true" type="view" name="NorthwindCustomersListView" />
+			<db-object key="employeesListView" overrideSchema="true" type="view" name="NorthwindEmployeesListView" />
+			<db-object key="ordersListView" overrideSchema="true" type="view" name="NorthwindOrdersListView" />
+			<db-object key="ordersEditView" overrideSchema="true" type="view" name="NorthwindOrdersEditView" />
+			<db-object key="orderDetailsView" overrideSchema="true" type="view" name="NorthwindOrderDetailsView" />
+			<db-object key="employeesSummary" overrideSchema="true" type="procedure" name="NorthwindEmployeesSummary" />
+			<db-object key="byCountrySummary" overrideSchema="true" type="procedure" name="NorthwindByCountrySummary" />
+			<db-object key="summary" overrideSchema="true" type="procedure" name="NorthwindSummary" />
+			<db-object key="top10CustomersList" overrideSchema="true" type="procedure" name="NorthwindTop10CustomersList" />
+		</connection>
+	</connections>
+</app>

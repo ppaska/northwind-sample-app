@@ -1,0 +1,10 @@
+<app-shell code="/app-script.jspy" homePageUri="dashboard.page.xml">
+  <app-shell.resources>
+    <menu-items>
+      <menu-item title="Orders" action="Open Page" actionName="orders-list"></menu-item>
+      <menu-item title="Customers" action="Open Page" actionName="customers-list"></menu-item>
+      <menu-item title="Employees" action="Open Page" actionName="employees-list"></menu-item>
+    </menu-items>
+    <sidebar-items/>
+  </app-shell.resources>
+</app-shell>
