@@ -1,4 +1,4 @@
-<app-shell code="/app-script.jspy" homePageUri="dashboard.page.xml">
+<app-shell homePageUri="dashboard.page.xml">
   <app-shell.resources>
     <menu-items>
       <menu-item title="Orders" action="Open Page" actionName="orders-list"></menu-item>
